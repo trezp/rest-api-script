@@ -17,7 +17,7 @@ function save(){
   });
 }
 
-async function getAll(){
+function getAll(){
   return data.records;
 }
 
