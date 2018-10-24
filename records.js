@@ -21,7 +21,7 @@ function getAll(){
   return data.records;
 }
 
-async function getOne(id){
+function getOne(id){
   return data.records.find(record => record.id == id);
 }
 

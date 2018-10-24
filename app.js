@@ -11,8 +11,9 @@ app.get('/',  (req, res) => {
 });
 
 // Send a GET request to view (READ) a quote
-app.get('/:index', (req, res) => {
-  res.json(quotes.quotes[req.params.index]);
+app.get('/:id', (req, res) => {
+  const quote = records.getOne(req.params.id);
+  res.json(quote);
 });
 
 // Send a GET request to view (READ) a random quote
