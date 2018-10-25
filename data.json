@@ -17,6 +17,54 @@
       "quote": "I am replacing this quote with another 3",
       "author": "Lance Bass 3",
       "year": 7777
+    },
+    {
+      "id": 6394,
+      "quote": "This is a quote",
+      "author": "Me",
+      "year": 4444
+    },
+    {
+      "id": 2021,
+      "quote": "This is a quote",
+      "author": "Me",
+      "year": 4444
+    },
+    {
+      "id": 6956,
+      "quote": "This is a quote",
+      "author": "Me",
+      "year": 4444
+    },
+    {
+      "id": 693,
+      "quote": "This is a quote",
+      "author": "Me",
+      "year": 4444
+    },
+    {
+      "id": 3538,
+      "quote": "This is a quote",
+      "author": "Me",
+      "year": 4444
+    },
+    {
+      "id": 9992,
+      "quote": "This is a quote",
+      "author": "Me",
+      "year": 4444
+    },
+    {
+      "id": 1264
+    },
+    {
+      "id": 4503
+    },
+    {
+      "id": 9089,
+      "quote": "There's no place like home",
+      "author": "Dorothy",
+      "year": 1939
     }
   ]
 }
