@@ -17,7 +17,7 @@ function save(){
   });
 }
 
-function getAll(){
+async function getAll(){
   return data.records;
 }
 
@@ -55,11 +55,24 @@ async function deleteRecord(record){
   return save();
 }
 
+function fakeServerDelay(fn){
+  return new Promise(resolve => {
+    setTimeout(function() {
+      resolve(fn());
+    }, 2000);
+  });
+}
+
+function returnsWrongInformation(){
+  return data.something
+}
+
 module.exports = {
   getAll,
   getOne, 
   create, 
   edit, 
   deleteRecord,
-  getRandom
+  getRandom,
+  fakeServerDelay
 }

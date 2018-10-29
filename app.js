@@ -4,11 +4,10 @@ const records = require('./records');
 const app = express();
 
 app.use(express.json()); 
-app.use(express.urlencoded());
 
 // Send a GET request to view (READ) a list of quotes 
-app.get('/',  (req, res) => {
-  const quotes = records.getAll();
+app.get('/', async (req, res) => {
+  const quotes = await records.fakeServerDelay(records.getAll);
   res.json(quotes);
 });
 
@@ -20,8 +19,9 @@ app.get('/:id', (req, res) => {
 
 // Send a GET request to view (READ) a random quote
 // Send a POST request to CREATE a new quote 
-app.post('/', (req,res) => {
-  const quote = records.create(req.body);
+app.post('/', async (req,res) => {
+  const quote = await records.create(req.body);
+  console.log(quote)
   res.json(quote);
 });
 // Send a PUT request to UPDATE a quote 
