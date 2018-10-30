@@ -21,8 +21,7 @@ app.get('/:id', (req, res) => {
 // Send a POST request to CREATE a new quote 
 app.post('/', async (req,res) => {
   const quote = await records.create(req.body);
-  console.log(quote)
-  res.json(quote);
+  res.status(201).json(quote);
 });
 // Send a PUT request to UPDATE a quote 
 // Send a DELETE request to DELETE a QUOTE
