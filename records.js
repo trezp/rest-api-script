@@ -17,7 +17,7 @@ function save(){
   });
 }
 
-async function getAll(){
+function getAll(){
   return data.records;
 }
 
@@ -25,21 +25,21 @@ function getOne(id){
   return data.records.find(record => record.id == id);
 }
 
-async function getRandom(arr){
+function getRandom(arr){
   const randNum = Math.floor(Math.random() * data.records.length);
   return arr[randNum];
 }
 
-async function create(body) {
-  const record = {
-    id: generateRandomId(),
-    quote: body.quote,
-    author: body.author,
-    year: body.year
+async function create(newRecord) {
+  if (newRecord.quote && newRecord.author){
+    newRecord.id = generateRandomId(); 
+    data.records.push(newRecord);
+    await save(); 
+    return newRecord; 
+  } else {
+    throw new Error("Oops! Something went wrong.")
   }
-  data.records.push(record);
-  await save(); 
-  return record; 
+  
 }
 
 async function edit(record, body){
@@ -49,7 +49,7 @@ async function edit(record, body){
   await save();
 }
 
-async function deleteRecord(record){
+function deleteRecord(record){
   data.records = data.records.filter(item => item.id != record.id);
   console.log(data.records)
   return save();

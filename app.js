@@ -15,7 +15,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // Send a GET request to view (READ) a list of quotes 
 app.get('/', async (req, res) => {
   const quotes = await records.fakeServerDelay(records.getAll);
@@ -23,19 +22,46 @@ app.get('/', async (req, res) => {
 });
 
 // Send a GET request to view (READ) a quote
-app.get('/:id', (req, res) => {
-  const quote = records.getOne(req.params.id);
+app.get('/:id', async (req, res) => {
+  const quote = await records.getOne(req.params.id);
   res.json(quote);
 });
 
 // Send a GET request to view (READ) a random quote
 // Send a POST request to CREATE a new quote 
 app.post('/', async (req,res) => {
-  const quote = await records.create(req.body);
-  res.status(201).json(quote);
+  try {
+    const quote = await records.create({
+      "quote": req.body.quote, 
+      "author": req.body.author,
+      "year": req.body.year
+    });
+    res.status(201).json(quote);
+  } catch(err){
+    res.status(500).json({ message: err.message });
+  }
 });
 // Send a PUT request to UPDATE a quote 
+// Edit quote
+app.put('/:id', async(req,res, next)=>{
+  try {
+    const quote = await records.getOne(req.params.id);
+    await records.edit(quote, req.body);
+    res.status(204).end();
+  } catch(err){
+    res.status(500).json({ message: err.message });
+  }
+});
 // Send a DELETE request to DELETE a QUOTE
+app.delete('/:id', async(req,res,)=>{
+  try {
+    const quote = await records.getOne(req.params.id);
+    await records.deleteRecord(quote);
+    res.status(204).end();
+  } catch(err){
+    es.status(500).json({ message: err.message });
+  }
+});
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

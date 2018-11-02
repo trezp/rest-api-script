@@ -1,12 +1,6 @@
 {
   "records": [
     {
-      "id": 835,
-      "quote": "I am replacing this quote with another",
-      "author": "Lance Bass",
-      "year": 3343
-    },
-    {
       "id": 8448,
       "quote": "I am replacing this quote with another 2",
       "author": "Lance Bass 2",
@@ -17,6 +11,36 @@
       "quote": "I am replacing this quote with another 3",
       "author": "Lance Bass 3",
       "year": 7777
+    },
+    {
+      "id": 8721,
+      "quote": "There's no place like home!!!!!!!!!",
+      "author": "Dorothy",
+      "year": 1939
+    },
+    {
+      "id": 5779,
+      "quote": "There's no place like home!!!!!!!!!",
+      "author": "Dorothy",
+      "year": 1939
+    },
+    {
+      "quote": "This is a new quote",
+      "author": "Some President one time",
+      "year": 1999,
+      "id": 3406
+    },
+    {
+      "quote": "This is a new quote",
+      "author": "Some President one time",
+      "year": 1999,
+      "id": 5972
+    },
+    {
+      "quote": "This is a new quote 2",
+      "author": "Some President one time",
+      "year": 1999,
+      "id": 9682
     }
   ]
 }
