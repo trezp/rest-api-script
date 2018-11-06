@@ -1,18 +1,6 @@
 {
   "records": [
     {
-      "id": 8448,
-      "quote": "I have changed the body of this quote",
-      "author": "Lance Bass 2",
-      "year": 9999
-    },
-    {
-      "id": 6869,
-      "quote": "I am replacing this quote with another 3",
-      "author": "Lance Bass 3",
-      "year": 7777
-    },
-    {
       "id": 8721,
       "quote": "There's no place like home!!!!!!!!!",
       "author": "Dorothy",
@@ -41,6 +29,18 @@
       "author": "Some President one time",
       "year": 1999,
       "id": 9682
+    },
+    {
+      "quote": "I HAVE EDITED THIS QUOTE",
+      "author": "Beauregard soigfjsdofij",
+      "year": 998808080808,
+      "id": 6256
+    },
+    {
+      "quote": "Testing the create function",
+      "author": "Mr. Whommmmmm",
+      "year": 1955,
+      "id": 7023
     }
   ]
 }

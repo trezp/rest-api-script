@@ -17,7 +17,7 @@ function asyncHandler(cb){
 
 // Send a GET request to view (READ) a list of quotes 
 router.get('/', async (req, res) => {
-  const quotes = await records.fakeServerDelay(records.getAll);
+  const quotes = await records.getAll();
   res.json(quotes);
 });
 
@@ -59,13 +59,9 @@ router.post('/', asyncHandler( async (req, res) => {
 // Send a PUT request to UPDATE a quote 
 // Edit quote
 router.put('/:id', asyncHandler( async(req,res, next)=>{
-  try {
     const quote = await records.getOne(req.params.id);
     await records.edit(quote, req.body);
     res.status(204).end();
-  } catch(err){
-    res.status(500).json({ message: err.message });
-  }
 })); 
 // Send a DELETE request to DELETE a QUOTE
 router.delete('/:id', async(req,res,)=>{
