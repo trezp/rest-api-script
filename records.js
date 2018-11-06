@@ -63,10 +63,6 @@ function fakeServerDelay(fn){
   });
 }
 
-function returnsWrongInformation(){
-  return data.something
-}
-
 module.exports = {
   getAll,
   getOne, 
