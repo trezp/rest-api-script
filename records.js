@@ -1,5 +1,4 @@
 const fs = require('fs');
-const data = require('./data.json');
 
 function generateRandomId(){
   return Math.floor(Math.random() * 10000);
@@ -17,6 +16,9 @@ function save(data){
   });
 }
 
+/**
+ * Gets all quotes
+ */
 function getAll(){
   return new Promise((resolve, reject) => {
     fs.readFile('data.json', 'utf8', (err, data) => {
@@ -30,17 +32,27 @@ function getAll(){
   });
 }
 
+/**
+ * Gets a specific quote
+ * @param {number} id - The ID of the specified quote.
+ */
 async function getOne(id){
   const quotes = await getAll();
   return quotes.records.find(record => record.id == id);
 }
-
-async function getRandom(arr){
+/**
+ * Returns a random quote 
+ */
+async function getRandom(){
   const quotes = await getAll();
   const randNum = Math.floor(Math.random() * quotes.records.length);
   return arr[randNum];
 }
 
+/**
+ * Creates a new quote record 
+ * @param {object} newRecord - Contains info for new quote 
+ */
 async function create(newRecord) {
   const quotes = await getAll(); 
 
@@ -54,6 +66,11 @@ async function create(newRecord) {
   }
 }
 
+/**
+ * 
+ * @param {object} record - The quote record to be changed
+ * @param {object} body - Info containing changes to quote
+ */
 async function edit(record, body){
   const quotes = await getAll();
   const quote = quotes.records.find(item => item.id == record.id);
@@ -66,6 +83,10 @@ async function edit(record, body){
   await save(quotes);
 }
 
+/**
+ * 
+ * @param {object} record - The record to be deleted. 
+ */
 async function deleteRecord(record){
   const quotes = await getAll();
   quotes.records = quotes.records.filter(item => item.id != record.id);
