@@ -16,8 +16,8 @@ function asyncHandler(cb){
 }
 
 // Send a GET request to view (READ) a list of quotes 
-router.get('/', async (req, res) => {
-  const quotes = await records.getAll();
+router.get('/', (req, res) => {
+  const quotes =  records.getAll();
   res.json(quotes);
 });
 

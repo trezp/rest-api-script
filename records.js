@@ -1,5 +1,21 @@
 const fs = require('fs');
 
+function generateRandomId(){
+  return Math.floor(Math.random() * 10000);
+}
+
+function save(data){
+  return new Promise((resolve, reject) => {
+    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
 /**
  * Gets all quotes
  * @param None
@@ -31,8 +47,9 @@ async function getOne(id){
  */
 async function getRandom(){
   const quotes = await getAll();
+  console.log(quotes)
   const randNum = Math.floor(Math.random() * quotes.records.length);
-  return arr[randNum];
+  return quotes.records[randNum];
 }
 
 /**
@@ -79,29 +96,6 @@ async function deleteRecord(record){
   await save(quotes);
 }
 
-function generateRandomId(){
-  return Math.floor(Math.random() * 10000);
-}
-
-function save(data){
-  return new Promise((resolve, reject) => {
-    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  });
-}
-
-class Quote {
-  constructor(quote, author, year) {
-    this.quote = quote;
-    this.author = author;
-    this.year = year
-  }
-}
 module.exports = {
   getAll,
   getOne, 
