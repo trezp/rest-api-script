@@ -4,6 +4,7 @@ const app = express();
 const routes = require('./routes');
 
 app.use(express.json()); 
+
 app.use('/api', routes);
 
 app.use((req, res, next) => {
@@ -15,7 +16,6 @@ app.use((req, res, next) => {
   console.log(req.message);
   next();
 });
-
 
 
 app.use(function(req, res, next) {
