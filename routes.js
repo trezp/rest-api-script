@@ -15,25 +15,27 @@ function asyncHandler(cb){
   };
 }
 
+const someData = [{blah: "stuff", blah3: "sdoifjsdofijs"}]
 // Send a GET request to view (READ) a list of quotes 
-router.get('/', (req, res) => {
-  const quotes =  records.getAll();
-  res.json(quotes);
+router.get('/quotes', (req, res) => {
+  res.json(someData)
+  // const quotes =  records.getAll();
+  // res.json(quotes);
 });
 
 // Send a GET request to view (READ) a quote
-router.get('/:id', async (req, res) => {
+router.get('/quotes/:id', async (req, res) => {
   const quote = await records.getOne(req.params.id);
   res.json(quote);
 });
 
-router.get('/quotes/random', asyncHandler (async(req, res, next)=>{
+router.get('/quotes/quote/random', asyncHandler (async(req, res, next)=>{
   const quotes = await records.getAll();
   const quote = await records.getRandom(quotes);
   res.json(quote);
 }));
 
-router.post('/', asyncHandler( async (req, res) => {
+router.post('/quotes', asyncHandler( async (req, res) => {
   const quote = await records.create({
     "quote": req.body.quote, 
     "author": req.body.author,
@@ -44,14 +46,14 @@ router.post('/', asyncHandler( async (req, res) => {
 
 // Send a PUT request to UPDATE a quote 
 // Edit quote
-router.put('/:id', asyncHandler( async(req,res, next)=>{
+router.put('/quotes/:id', asyncHandler( async(req,res, next)=>{
     const quote = await records.getOne(req.params.id);
     await records.edit(quote, req.body);
     res.status(204).end();
 })); 
 
 // Send a DELETE request to DELETE a QUOTE
-router.delete('/:id', async(req,res,)=>{
+router.delete('/quotes/:id', async(req,res,)=>{
   try {
     const quote = await records.getOne(req.params.id);
     await records.deleteRecord(quote);
