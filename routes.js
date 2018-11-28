@@ -15,12 +15,10 @@ function asyncHandler(cb){
   };
 }
 
-const someData = [{blah: "stuff", blah3: "sdoifjsdofijs"}]
 // Send a GET request to view (READ) a list of quotes 
-router.get('/quotes', (req, res) => {
-  res.json(someData)
-  // const quotes =  records.getAll();
-  // res.json(quotes);
+router.get('/quotes', async (req, res) => {
+  const quotes =  await records.getAll();
+  res.json(quotes);
 });
 
 // Send a GET request to view (READ) a quote
