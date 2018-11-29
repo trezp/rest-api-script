@@ -3,7 +3,6 @@ const router = express.Router();
 
 const records = require('./records');
 
-
 // HELPER function
 function asyncHandler(cb){
   return async (req, res, next)=>{
@@ -44,14 +43,14 @@ router.post('/quotes', asyncHandler( async (req, res) => {
 
 // Send a PUT request to UPDATE a quote 
 // Edit quote
-router.put('/quotes/:id', asyncHandler( async(req,res, next)=>{
+router.put('/quotes/:id/update', asyncHandler( async(req,res, next)=>{
     const quote = await records.getQuote(req.params.id);
     await records.updateQuote(quote, req.body);
     res.status(204).end();
 })); 
 
 // Send a DELETE request to DELETE a QUOTE
-router.delete('/quotes/:id', async(req,res,)=>{
+router.delete('/quotes/:id/delete', async(req,res,)=>{
   try {
     const quote = await records.getQuote(req.params.id);
     await records.deleteQuote(quote);
