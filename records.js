@@ -20,7 +20,7 @@ function save(data){
  * Gets all quotes
  * @param None
  */
-function getAll(){
+function getQuotes(){
   return new Promise((resolve, reject) => {
     fs.readFile('data.json', 'utf8', (err, data) => {
       if (err) {
@@ -37,16 +37,16 @@ function getAll(){
  * Gets a specific quote by ID
  * @param {number} id - Accepts the ID of the specified quote.
  */
-async function getOne(id){
-  const quotes = await getAll();
+async function getQuote(id){
+  const quotes = await getQuotes();
   return quotes.records.find(record => record.id == id);
 }
 /**
  * Gets a random quote 
  * @param None
  */
-async function getRandom(){
-  const quotes = await getAll();
+async function getRandomQuote(){
+  const quotes = await getQuotes();
   console.log(quotes)
   const randNum = Math.floor(Math.random() * quotes.records.length);
   return quotes.records[randNum];
@@ -56,8 +56,8 @@ async function getRandom(){
  * Creates a new quote record 
  * @param {Object} newRecord - Object containing info for new quote: the quote text, author and year 
  */
-async function create(newRecord) {
-  const quotes = await getAll(); 
+async function createQuote(newRecord) {
+  const quotes = await getQuotes(); 
 
   if (newRecord.quote && newRecord.author){
     newRecord.id = generateRandomId(); 
@@ -74,8 +74,8 @@ async function create(newRecord) {
  * @param {Object} record - The quote to be changed
  * @param {Object} body - An object containing the changes to quote: quote, author, year (all optional)
  */
-async function edit(record, body){
-  const quotes = await getAll();
+async function updateQuote(record, body){
+  const quotes = await getQuote();
   const quote = quotes.records.find(item => item.id == record.id);
   
 
@@ -90,17 +90,17 @@ async function edit(record, body){
  * Deletes a single record
  * @param {Object} record - Accepts record to be deleted. 
  */
-async function deleteRecord(record){
-  const quotes = await getAll();
+async function deleteQuote(record){
+  const quotes = await getQuotes();
   quotes.records = quotes.records.filter(item => item.id != record.id);
   await save(quotes);
 }
 
 module.exports = {
-  getAll,
-  getOne, 
-  create, 
-  edit, 
-  deleteRecord,
-  getRandom
+  getQuotes,
+  getQuote, 
+  createQuote, 
+  updateQuote, 
+  deleteQuote,
+  getRandomQuote
 }
