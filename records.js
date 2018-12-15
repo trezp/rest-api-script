@@ -47,7 +47,6 @@ async function getQuote(id){
  */
 async function getRandomQuote(){
   const quotes = await getQuotes();
-  console.log(quotes)
   const randNum = Math.floor(Math.random() * quotes.records.length);
   return quotes.records[randNum];
 }
@@ -58,31 +57,25 @@ async function getRandomQuote(){
  */
 async function createQuote(newRecord) {
   const quotes = await getQuotes(); 
-
-  if (newRecord.quote && newRecord.author){
-    newRecord.id = generateRandomId(); 
-    quotes.records.push(newRecord);
-    await save(quotes); 
-    return newRecord; 
-  } else {
-    throw new Error("Oops! Quote and author expected.")
-  }
+  
+  newRecord.id = generateRandomId(); 
+  quotes.records.push(newRecord);
+  await save(quotes); 
+  return newRecord; 
 }
 
 /**
  * Updates a single record 
- * @param {Object} record - The quote to be changed
- * @param {Object} body - An object containing the changes to quote: quote, author, year (all optional)
+ * @param {Object} newQuote - An object containing the changes to quote: quote, author, year (all optional)
  */
-async function updateQuote(record, body){
-  const quotes = await getQuote();
-  const quote = quotes.records.find(item => item.id == record.id);
+async function updateQuote(newQuote){
+  const quotes = await getQuotes();
+  let quote = quotes.records.find(item => item.id == newQuote.id);
   
-
-  quote.quote = body.quote || record.quote;
-  quote.author = body.author || record.author;
-  quote.year = body.year || record.year;
-
+  quote.quote = newQuote.quote;
+  quote.author = newQuote.author;
+  quote.year = newQuote.year;
+ 
   await save(quotes);
 }
 
