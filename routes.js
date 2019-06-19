@@ -109,8 +109,8 @@ router.put('/quotes/:id', asyncHandler( async(req,res)=>{
 // });
 
 router.delete('/quotes/:id', asyncHandler(async(req,res)=>{
-  //throw new Error("Something bad happened");
   const quote = await records.getQuote(req.params.id);
+  
   if (quote){
     await records.deleteQuote(quote);
     res.status(204).end();

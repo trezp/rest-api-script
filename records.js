@@ -1,9 +1,17 @@
 const fs = require('fs');
 
+/**
+ * Generate a random ID number
+ * @param None
+ */
 function generateRandomId(){
-  return Math.floor(Math.random() * 10000);
+  return Math.ceil(Math.random() * 10000);
 }
-
+ 
+/**
+ * Save data
+ * @param {Object} - accepts an object containing data to be saved 
+ */
 function save(data){
   return new Promise((resolve, reject) => {
     fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {

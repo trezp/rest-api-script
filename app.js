@@ -20,7 +20,6 @@ app.use((err, req, res, next) => {
       message: err.message
     } 
   });
-
 });
 
 app.listen(3000, () => console.log('Quote API listening on port 3000!'));
